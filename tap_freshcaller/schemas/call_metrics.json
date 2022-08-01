@@ -1,0 +1,27 @@
+{
+    "type": ["null", "object"],
+    "properties": {
+        "id": {"type": ["null", "integer"]},
+        "call_id": {"type": ["null", "integer"]},
+        "ivr_time": {"type": ["null", "integer"]},
+        "ivr_time_unit": {"type": ["null", "string"]},
+        "hold_duration": {"type": ["null", "integer"]},
+        "hold_duration_unit": {"type": ["null", "string"]},
+        "call_work_time": {"type": ["null", "integer"]},
+        "call_work_time_unit": {"type": ["null", "string"]},
+        "total_ringing_time": {"type": ["null", "integer"]},
+        "total_ringing_time_unit": {"type": ["null", "string"]},
+        "talk_time": {"type": ["null", "integer"]},
+        "talk_time_unit": {"type": ["null", "string"]},
+        "answering_speed": {"type": ["null", "integer"]},
+        "answering_speed_unit": {"type": ["null", "string"]},
+        "recording_duration": {"type": ["null", "integer"]},
+        "recording_duration_unit": {"type": ["null", "string"]},
+        "bill_duration": {"type": ["null", "integer"]},
+        "bill_duration_unit": {"type": ["null", "string"]},
+        "cost": {"type": ["null", "number"]},
+        "cost_unit": {"type": ["null", "string"]},
+        "created_time": {"type": ["null", "string"]},
+        "updated_time": {"type": ["null", "string"]}
+    }
+}

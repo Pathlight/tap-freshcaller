@@ -1,0 +1,53 @@
+{
+    "type": ["null", "object"],
+    "properties": {
+        "id": {"type": ["null", "integer"]},
+        "direction": {"type": ["null", "integer"]},
+        "parent_call_id": {"type": ["null", "integer"]},
+        "root_call_id": {"type": ["null", "integer"]},
+        "phone_number_id": {"type": ["null", "integer"]},
+        "phone_number": {"type": ["null", "string"]},
+        "assigned_agent_id": {"type": ["null", "integer"]},
+        "assigned_team_id": {"type": ["null", "integer"]},
+        "assigned_call_queue_id": {"type": ["null", "integer"]},
+        "assigned_ivr_id": {"type": ["null", "integer"]},
+        "call_notes": {"type": ["null", "string"]},
+        "bill_duration": {"type": ["null", "integer"]},
+        "bill_duration_unit": {"type": ["null", "string"]},
+        "created_time": {"type": ["null", "string"]},
+        "updated_time": {"type": ["null", "string"]},
+        "recording": {
+            "type": ["null", "object"],
+            "properties": {
+                "id": {"type": ["null", "integer"]},
+                "url": {"type": ["null", "string"]},
+                "duration": {"type": ["null", "integer"]},
+                "duration_unit": {"type": ["null", "string"]}
+            }
+        },
+        "participants": {
+            "type": ["null", "array"],
+            "items": {
+                "type": ["null", "object"],
+                "properties": {
+                    "id": {"type": ["null", "integer"]},
+                    "call_id": {"type": ["null", "integer"]},
+                    "caller_id": {"type": ["null", "integer"]},
+                    "caller_number": {"type": ["null", "string"]},
+                    "participant_id": {"type": ["null", "integer"]},
+                    "participant_type": {"type": ["null", "string"]},
+                    "connection_type": {"type": ["null", "integer"]},
+                    "call_status": {"type": ["null", "integer"]},
+                    "duration": {"type": ["null", "integer"]},
+                    "duration_unit": {"type": ["null", "string"]},
+                    "cost": {"type": ["null", "number"]},
+                    "cost_unit": {"type": ["null", "string"]},
+                    "enqueued_time": {"type": ["null", "string"]},
+                    "created_time": {"type": ["null", "string"]},
+                    "updated_time": {"type": ["null", "string"]}
+                }
+            }
+        }
+    }
+}
+

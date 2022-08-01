@@ -1,0 +1,28 @@
+{
+    "type": ["null", "object"],
+    "properties": {
+		"id": {"type": ["null", "integer"]},
+		"name": {"type": ["null", "string"]},
+		"email": {"type": ["null", "string"]},
+		"phone": {"type": ["null", "string"]},
+		"status": {"type": ["null", "integer"]},
+		"preference": {"type": ["null", "integer"]},
+		"mobile_app_preference": {"type": ["null", "integer"]},
+		"last_call_time": {"type": ["null", "string"]},
+		"last_seen_time": {"type": ["null", "string"]},
+		"confirmed": {"type": ["null", "boolean"]},
+		"language": {"type": ["null", "string"]},
+		"time_zone": {"type": ["null", "string"]},
+		"deleted": {"type": ["null", "boolean"]},
+		"role": {"type": ["null", "string"]},
+		"teams": {
+            "type": ["null", "array"],
+            "items": {
+                "type": ["null", "object"],
+                "properties": {
+                    "id": {"type": ["null", "integer"]}
+                }
+            }
+        }
+	}
+}
