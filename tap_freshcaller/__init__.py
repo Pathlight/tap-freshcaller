@@ -21,7 +21,7 @@ END_POINTS = {
 }
 
 PAGE_RECORDS_LIMIT = 1000
-INCREMENTAL_SYNC_STREAMS = ["call_metrics"]
+INCREMENTAL_SYNC_STREAMS = ["calls", "call_metrics"]
 
 
 class FreshcallerRateLimitError(Exception):
@@ -39,7 +39,8 @@ def get_bookmark(stream_id):
     Bookmarks for the streams which has incremental sync.
     """
     bookmarks = {
-        "call_metrics": "created_time"
+        "call_metrics": "created_time",
+        "calls": "created_time"
     }
     return bookmarks.get(stream_id)
 
@@ -135,10 +136,14 @@ def request_data(tap_stream_id, headers, parameters, config, session=None):
         response = make_request(session, url, parameters, headers)
         res = response.json()
 
+        print(res)
+
         parameters["page"] += 1
+        meta = res["meta"]
         if total_pages == 1:
-            total_pages = res["total_pages"]
-        all_items += res["call_metrics"]
+            total_pages = meta["total_pages"]
+        all_items += res[tap_stream_id]
+        print(len(all_items))
     return all_items
 
 
@@ -165,6 +170,7 @@ def sync_incremental(config, state, stream):
     bookmark = singer.get_bookmark(state, stream.tap_stream_id, bookmark_column) \
         if state.get("bookmarks", {}).get(stream.tap_stream_id) \
         else config["start_date"]
+
     session = requests_session()
     today = datetime_to_str(datetime.utcnow().date())
 
