@@ -135,9 +135,6 @@ def request_data(tap_stream_id, headers, parameters, config, session=None):
     while parameters["page"] <= total_pages:
         response = make_request(session, url, parameters, headers)
         res = response.json()
-
-        print(res)
-
         parameters["page"] += 1
         meta = res["meta"]
         if total_pages == 1:
