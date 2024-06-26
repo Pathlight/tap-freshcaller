@@ -140,7 +140,6 @@ def request_data(tap_stream_id, headers, parameters, config, session=None):
         if total_pages == 1:
             total_pages = meta["total_pages"]
         all_items += res[tap_stream_id]
-        print(len(all_items))
     return all_items
 
 
