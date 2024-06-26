@@ -4,7 +4,8 @@ import json
 import backoff
 import requests
 import singer
-from datetime import datetime, timedelta
+import datetime
+from dateutil.parser import parse as parse_datetime
 from singer import utils, metadata
 from singer.catalog import Catalog, CatalogEntry
 from singer.schema import Schema
@@ -31,6 +32,7 @@ class FreshcallerRateLimitError(Exception):
 
 
 def get_key_properties(stream_id):
+    # ???
     return ["id"]
 
 
@@ -89,8 +91,8 @@ def discover():
     raw_schemas = load_schemas()
     streams = []
     for stream_id, schema in raw_schemas.items():
-        stream_metadata = create_metadata_for_report(stream_id, schema, get_key_properties(stream_id))
         key_properties = get_key_properties(stream_id)
+        stream_metadata = create_metadata_for_report(stream_id, schema, key_properties)
         streams.append(
             CatalogEntry(
                 tap_stream_id=stream_id,
@@ -142,14 +144,8 @@ def request_data(tap_stream_id, headers, parameters, config, session=None):
         all_items += res[tap_stream_id]
     return all_items
 
-
-def datetime_to_str(dt):
-    return dt.strftime('%Y-%m-%dT%H:%M:%S')
-
-
 def get_next_date(_date: str):
-    return datetime_to_str(datetime.strptime(_date, '%Y-%m-%dT%H:%M:%S') + timedelta(days=1))
-
+    return str(parse_datetime(_date) + datetime.timedelta(days=1))
 
 def sync_incremental(config, state, stream):
     bookmark_column = get_bookmark(stream.tap_stream_id)
@@ -168,7 +164,7 @@ def sync_incremental(config, state, stream):
         else config["start_date"]
 
     session = requests_session()
-    today = datetime_to_str(datetime.utcnow().date())
+    today = str(datetime.datetime.now(datetime.timezone.utc).date())
 
     while True:
         next_date = get_next_date(bookmark)
